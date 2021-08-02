@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import data.Usuario;
 
 /**
- * @author Mateo
- *
+ * @author Mateo Ortiz & Andres Moreno
+ * 
  */
 public class AdmUsuario {
 	protected static ArrayList<Usuario> usuario;

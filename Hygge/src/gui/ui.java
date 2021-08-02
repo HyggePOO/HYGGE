@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package gui;
 
 import java.util.Collections;
@@ -14,7 +12,7 @@ public class ui {
 
 	public void showMenu() {
 		System.out.println("\n------------ MENU DE OPCIONES ------------");
-		System.out.printf(" 1. Ver lista de %s \n 2. Registrarse \n 3. Salir\n", "Usuarios Registrados");
+		System.out.printf(" 1. Ver lista de %s \n 2. Salir", "Usuarios Registrados");
 		System.out.print("\n Por favor escriba el número de la opción deseada ==> ");
 		
 	}
@@ -32,4 +30,6 @@ public class ui {
 	public void wrongOption() {
 		System.out.println("Opción Incorrecta");
 	}
+	
+	
 }

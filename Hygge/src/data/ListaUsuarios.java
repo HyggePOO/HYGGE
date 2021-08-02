@@ -26,7 +26,6 @@ public class ListaUsuarios {
 		
 	}
 
-
 	public void saveUsers() {
 		this.lista.writingRecords();
 		

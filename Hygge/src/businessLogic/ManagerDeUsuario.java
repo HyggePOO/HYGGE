@@ -11,17 +11,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-import businessLogic.RegistroDeUsuario;
-
 import data.Usuario;
 
 
 /**
- * @author Mateo
- *
+ * @author Mateo Ortiz & Andres Moreno
+ * 
  */
 public class ManagerDeUsuario extends AdmUsuario{
 	private String fileName;
+
+	
 	
 	public ManagerDeUsuario(String fileName) {
 		this.fileName= fileName;
@@ -68,21 +68,6 @@ public class ManagerDeUsuario extends AdmUsuario{
 		usuario.add(u);
 
 	}
-	
-	/***private void processLine(String line) {
-		Scanner sc = new Scanner(line);
-		sc.useDelimiter(",");
-		String username = sc.next().trim();	
-		username = username.replace("[","");
-		String contraseña = sc.next().trim();
-		String nombre = sc.next().trim();
-		int id = Integer.parseInt((sc.next().trim()).replace("]",""));
-		sc.close();
-		Usuario u = new Usuario(username,contraseña,nombre, id);
-		usuario.add(u);
-
-	}***/
-	
 
 	public ArrayList<Usuario> getUsuarios() {
 		return usuario;
@@ -103,8 +88,14 @@ public class ManagerDeUsuario extends AdmUsuario{
 		}
 	}
 	
-	
+	/*
 	public static Usuario RegistroDeUsuario() {
+		String username = null;
+		String contraseña = null;
+		String nombre;
+		int id;
+		boolean correcto = false; //Controla la validez del nombre de usuario y de la contraseña en el registro del usuario
+		
 		System.out.println("\n------------ REGISTRO ------------");
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Introduzca su nombre de usuario");
@@ -113,17 +104,16 @@ public class ManagerDeUsuario extends AdmUsuario{
 			if (username.length() == 0) {
 				System.out.println("Introduzca su nombre de usuario (debe tener por lo menos 1 caracter)");
 				correcto = false;
-			}
-			boolean xd = nombreDuplicado(username);
-			if (xd == true) {
-				System.out.println("Nombre de usuario ya en uso introduzca otro nombre de usuario");
-				correcto = false;
 			}else {
-				correcto = true;
+				if (nombreDuplicado(username) == true) {
+					System.out.println("Nombre de usuario ya en uso introduzca otro nombre de usuario");
+					correcto = false;
+				}else {
+					correcto = true;
+				}
 			}
 		}
 		correcto = false;
-	//username = sc.nextLine(); 
 		System.out.println("Introduzca su contraseña");
 		while (correcto == false) {
 		contraseña = sc.nextLine(); 
@@ -140,41 +130,54 @@ public class ManagerDeUsuario extends AdmUsuario{
 		Usuario u = new Usuario(username,contraseña,nombre, id);
 		usuario.add(u);
 		return u;
-
+	}*/
+	
+	public static boolean registroUsuarioUsername(String username) {
+		boolean usuarioCorrecto = nombreDuplicado(username);
+		if (username.length() == 0 || usuarioCorrecto == true) {
+			return false;
+		}
+		return true;
+	}
+	
+	public static boolean registroUsuarioContraseña(String contraseña) {
+		if (contraseña.length() < 5) {
+			return false;
+		}
+		return true;
+	}
+	
+	public static void registroUsuario(String username, String contraseña, String nombre) {
+		int id = usuario.size() + 1;
+		Usuario u = new Usuario(username,contraseña,nombre, id);
+		usuario.add(u);
+	}
+	
+	public static boolean loginUsuario(String username, String contraseña) {
+		boolean usuarioCorrecto = nombreDuplicado(username);
+		boolean contraseñaCorrecta = contraseñaDuplicada(contraseña);
+		if(usuarioCorrecto == true && contraseñaCorrecta == true) {
+			return true;
+		}
+		return false;
 	}
 	
 	private static boolean nombreDuplicado(String username) {
-
-		/**int i = 0;
-		while( i< usuario.size()) {
-			if(username == ((usuario.get(i)).getUsername())) {
-				return true;
-			}
-			i++;
-		}
-		return false;**/
 		for (int i = 0; i < usuario.size();i++){
-			String jeje = (usuario.get(i)).getUsername();
-			System.out.println(jeje + " == " + username);
-			if(jeje == username) {
+			if(((usuario.get(i)).getUsername()).equals(username)) {
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	
-	
-	protected Usuario registro() {
-		Usuario u = new Usuario(username,contraseña,nombre, id);
-		return u;
+	private static boolean contraseñaDuplicada(String contraseña) {
+		for (int i = 0; i < usuario.size();i++){
+			if(((usuario.get(i)).getContraseña()).equals(contraseña)) {
+				return true;
+			}
+		}
+		return false;
 	}
-
-	private static String username;
-	private static String contraseña;
-	private static String nombre;
-	private static int id;
-	private static boolean correcto = false;
-	
 	
 }

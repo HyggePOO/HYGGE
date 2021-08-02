@@ -4,8 +4,8 @@
 package data;
 
 /**
- * @author Mateo
- *
+ * @author Mateo Ortiz & Andres Moreno
+ * 
  */
 public class Usuario {
 	private String username;
@@ -54,7 +54,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return " " + this.username +","+ this.contraseña +"," + this.nombre + "," + this.Id ;
+		return this.username +","+ this.contraseña +"," + this.nombre + "," + this.Id ;
 	}
 }
 
