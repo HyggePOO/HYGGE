@@ -6,7 +6,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import businessLogic.AdmUsuario;
-import businessLogic.ManagerDeUsuario;
+import businessLogic.ManagerDeNegocio;
+
 import data.ListaNegocios;
 
 import javax.swing.JTextField;
@@ -27,10 +28,9 @@ import java.awt.event.ActionEvent;
  * @author Mateo Ortiz & Andres Moreno
  * 
  */
-
 @SuppressWarnings("serial")
-public class Inicio extends JFrame {
-
+public class InicioNegocio extends JFrame {
+	
 	private JPanel contentPane;
 	private JTextField username1;
 	private JPasswordField contraseña1;
@@ -43,7 +43,7 @@ public class Inicio extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Inicio(final ListaNegocios listaNegocio) {
+	public InicioNegocio(final ListaNegocios listaNegocio) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("HYGGE - Inicio Sesion");
@@ -52,8 +52,6 @@ public class Inicio extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 99, 71));
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -61,14 +59,14 @@ public class Inicio extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Inicio de sesion");
+		JLabel lblNewLabel = new JLabel("Inicio de sesion de Negocio");
 		lblNewLabel.setFont(new Font("Calibri", Font.BOLD, 24));
-		lblNewLabel.setBounds(39, 20, 200, 40);
+		lblNewLabel.setBounds(39, 20, 300, 40);
 		panel.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Usuario");
+		JLabel lblNewLabel_1 = new JLabel("Negocio");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_1.setBounds(45, 120, 64, 14);
+		lblNewLabel_1.setBounds(45, 120, 64, 20);
 		contentPane.add(lblNewLabel_1);
 		
 		username1 = new JTextField();
@@ -92,13 +90,13 @@ public class Inicio extends JFrame {
 				char [] contraseña = contraseña1.getPassword();
 				String contraseñaFinal = new String(contraseña);
 				
-				if(ManagerDeUsuario.loginUsuario(username1.getText(),contraseñaFinal)==true) {
+				if(ManagerDeNegocio.loginNegocio(username1.getText(),contraseñaFinal)==true) {
 					dispose();
 					JOptionPane.showMessageDialog(null, "Bienvenido a HYGGE","Ingresaste",JOptionPane.INFORMATION_MESSAGE);
-					AdmUsuario.setUsuarioLogeado(username1.getText(),"usuario");
+					AdmUsuario.setUsuarioLogeado(username1.getText(),"negocio");
 					Principal p = new Principal(listaNegocio);
 					p.setVisible(true);
-					
+				
 				} else {
 					JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrectos","No se puede ingresar",JOptionPane.ERROR_MESSAGE);
 					username1.setText("");
@@ -107,22 +105,21 @@ public class Inicio extends JFrame {
 				}
 			}
 		});
-		btnEntrar.setBounds(299, 225, 94, 33);
+		btnEntrar.setBounds(299, 222, 94, 33);
 		contentPane.add(btnEntrar);
 		
-		JButton btnRegistro = new JButton("Registrese aqui");
+		JButton btnRegistro = new JButton("Registre su negocio aqui");
 		btnRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Registro l = new Registro(listaNegocio);
-				l.setVisible(true);
-				
+				RegistroNegocio r = new RegistroNegocio(listaNegocio);
+				r.setVisible(true);
 				dispose();
 			}
 		});
 		btnRegistro.setForeground(new Color(0, 0, 255));
 		btnRegistro.setBackground(new Color(240, 240, 240));
 		btnRegistro.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnRegistro.setBounds(43, 232, 176, 20);
+		btnRegistro.setBounds(45, 232, 210, 14);
 		contentPane.add(btnRegistro);
 		
 		JButton botonVolver = new JButton("Volver");
@@ -135,6 +132,5 @@ public class Inicio extends JFrame {
 		});
 		botonVolver.setBounds(425, 25, 89, 23);
 		contentPane.add(botonVolver);
-
 	}
 }

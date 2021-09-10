@@ -3,13 +3,9 @@
  */
 package businessLogic;
 
+import data.ListaNegocios;
 import data.ListaUsuarios;
-import gui.Inicio;
-import gui.Registro;
-import gui.ui;
-import data.Usuario;
-
-
+import gui.Principal;
 
 /**
  * @author Mateo Ortiz & Andres Moreno
@@ -21,45 +17,25 @@ public class Runner {
 	 * @param args
 	 */
 	static ListaUsuarios miembros = new ListaUsuarios();
+	static ListaNegocios negocios = new ListaNegocios();
 	
 	public static void main(String[] args) {
-		
-		ui ui = new ui();
-		Inicio sesion1 =new Inicio();
-		Registro registro1 =new Registro();
-		
-		miembros.loadUsers();
-		sesion1.setVisible(true);
-		int option = 0;
-		while (option != 3) {
-			ui.showMenu();
-			option = ui.readOption();
-
-			switch (option) {
-			case 1: // show names
-				for(Usuario u : miembros.getAllUsers()) {
-					ui.showItem(u.toString());
-					}
-				break;
-					
-			case 2:
-				System.exit(0);
-				break;
-				/*RegistroDeUsuario nuevoPerfil  = new RegistroDeUsuario();
-				ManagerDeUsuario.registrandoUsuario(nuevoPerfil.registro());
-				ManagerDeUsuario.RegistroDeUsuario();
-				ui.showItem("Has sido registrado satisfactoriamente\n");*/
-			default:
-				ui.wrongOption();
-			}
-		}
-
+		Principal frame = new Principal(negocios);
+		cargar();
+		frame.setVisible(true);
 	}
 	
-	public static void guardar(boolean verdadero) {
-		if(verdadero == true) {
+	public static void guardar() {
 			miembros.saveUsers();
-		}
+			negocios.saveBuss();
 	}
-
+	
+	public static void cargar() {
+		ManagerDeUsuario.reiniciarUsuarios();
+		ManagerDeNegocio.reiniciarNegocios();
+		ManagerDeNegocio.reiniciarNegociosBusqueda();
+		miembros.loadUsers();
+		negocios.loadBuss();
+	}
+	
 }

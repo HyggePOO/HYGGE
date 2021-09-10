@@ -2,7 +2,6 @@
 package data;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import businessLogic.ManagerDeUsuario;
 
@@ -14,7 +13,7 @@ public class ListaUsuarios {
 	private ManagerDeUsuario lista;
 
 	public ListaUsuarios(){
-		this.lista = new ManagerDeUsuario("usuarios.txt");
+		this.lista = new ManagerDeUsuario("data/usuarios/usuarios.txt");
 	}
 
 	public ArrayList<Usuario> getAllUsers() {

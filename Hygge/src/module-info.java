@@ -1,2 +1,3 @@
-module Hygge {
-}
+//module Hygge {
+//	requires java.desktop;
+//}
