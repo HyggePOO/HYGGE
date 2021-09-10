@@ -1,6 +1,0 @@
- juan89,contraseña123,juan,1
- pablito33,amarillo,pablo,2
- koko,francia2,fernando,3
- pepe,mogolla,miguel,4
- kike,rinoceronte,Francisco Castro,5
- pollo,contraseña,mateo,6
