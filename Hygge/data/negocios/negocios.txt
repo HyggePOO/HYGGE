@@ -1,6 +1,0 @@
-htundam~Hotel Tundama~contraseña~3.3~Urbano~Hotelero~duitama~calle 3 #2-12~5~1
-cafregion~Cafetería Lo Mejor de la Región~contraseña~3.8~Urbano~Gastronomico~tunja~~3~2
-escalada~Suescalada~montañas123~4.5~Rural~Deportes Extremos~bogota~suesca, cundinamarca~5~3
-cristales~Caño Cristales~cristalessss~4.3~Rural~Ecoturismo~villavicencio~la macarena meta~12~4
-wiwa~WIWA TOUR~wiwaviaje~5.0~Rural~Cultural~santa marta~sierra nevada de santa marta~5~5
-estadio~Estadio Palogrande~estadio123~3.2~Urbano~Actividades~manizales~cra. 25 ##64-00~5~6
