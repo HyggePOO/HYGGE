@@ -1,0 +1,12 @@
+juan89~contraseña1~Juan Carlos~22~1
+pablito33~amarillo~pablo~32~2
+koko~francia2~fernando~28~3
+pepe~mogolla~miguel~24~4
+kike~rinoceronte~Francisco Castro~34~5
+mortadela~pepitatequiero~Wilson~20~6
+sopas~carton23~marcos~19~7
+pepon~juliana~~20~8
+pepito~contraseña~Hugo~35~9
+mateoseb~contraseña~Mateo Ortiz~20~10
+usuariodepruebas~contraseña~Usuario~19~11
+usuario~contraseña~usuario~20~12
