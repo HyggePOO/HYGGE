@@ -48,7 +48,7 @@ public class Principal extends JFrame {
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(anchoScreen/16, altoScreen/16, 1227, 654);
+		setBounds(anchoScreen/16, altoScreen/16, 880, 654);
 		setTitle("HYGGE - Inicio");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -57,47 +57,12 @@ public class Principal extends JFrame {
 		
 		Calendar c1 = Calendar.getInstance();
 		final int mes = c1.get(Calendar.MONTH)+1;
-		JButton btndestacado = new JButton("");
-		btndestacado.setBounds(874, 276, 293, 262);
-		btndestacado.setIcon(new ImageIcon("sources/iconos/destacado.jpeg"));
 		ImageIcon icdestacado = new ImageIcon("sources/iconos/destacado.jpeg");
-		ImageIcon imgndestacado= new ImageIcon(icdestacado.getImage().getScaledInstance(btndestacado.getWidth(), btndestacado.getHeight(), Image.SCALE_SMOOTH));
-		btndestacado.setIcon(imgndestacado);
-		btndestacado.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(mes==6 || mes==7) {
-					Buscador B = new Buscador(listaNegocio,"Hotelero");
-					B.setVisible(true);
-				}if(mes==1 || mes==2) {
-					Buscador B = new Buscador(listaNegocio,"Actividades");
-					B.setVisible(true);
-				}if(mes==5 || mes==10) {
-					Buscador B = new Buscador(listaNegocio,"Gastronomico");
-					B.setVisible(true);
-				}if(mes==3 || mes==12) {
-					Buscador B = new Buscador(listaNegocio,"Cultural");
-					B.setVisible(true);
-				}if(mes==4 || mes==11) {
-					Buscador B = new Buscador(listaNegocio,"Deportes Extremos");
-					B.setVisible(true);
-				}if(mes==8 || mes==9){
-					Buscador B = new Buscador(listaNegocio,"Ecoturismo");
-					B.setVisible(true);
-				}
-				
-			}
-		});
-		contentPane.add(btndestacado);
-		
-		JLabel lblNewLabel_2 = new JLabel("Destinos destacados");
-		lblNewLabel_2.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 27));
-		lblNewLabel_2.setBounds(874, 240, 251, 40);
-		contentPane.add(lblNewLabel_2);
 		
 		final JPanel panelSesion = new JPanel();
 		panelSesion.setBorder(new EmptyBorder(2, 2, 2, 2));
 		panelSesion.setBackground(Color.LIGHT_GRAY);
-		panelSesion.setBounds(924, 90, 243, 137);
+		panelSesion.setBounds(580, 90, 243, 137);
 		contentPane.add(panelSesion);
 		panelSesion.setLayout(null);
 		
@@ -152,11 +117,12 @@ public class Principal extends JFrame {
 		JButton btnNewButton_2 = new JButton("BUSCAR");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				listaNegocio.priorizar();
 				Buscador B=new Buscador(listaNegocio,null);
 				B.setVisible(true);
 			}
 		});
-		btnNewButton_2.setBounds(647, 0, 89, 23);
+		btnNewButton_2.setBounds(430, 0, 89, 23);
 		panel.add(btnNewButton_2);
 		
 		JButton btnNewButton_1 = new JButton("PERFIL");
@@ -172,14 +138,20 @@ public class Principal extends JFrame {
 					}
 					vu.setVisible(true);
 				}else if(AdmUsuario.isLogeado() == true && AdmUsuario.getUsuarioLogeadoTipo()=="negocio"){
-					VentanaNegocio vn = new VentanaNegocio(AdmUsuario.getNegocioLogeado());
+					VentanaNegocio vn = null;
+					try {
+						vn = new VentanaNegocio(AdmUsuario.getNegocioLogeado());
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					vn.setVisible(true);
 				}else {
-					JOptionPane.showMessageDialog(null, "Primero debe iniciar sesión","Intente nuevamente",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Primero debe iniciar sesiÃ³n","Intente nuevamente",JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
-		btnNewButton_1.setBounds(735, 0, 89, 23);
+		btnNewButton_1.setBounds(529, 0, 89, 23);
 		panel.add(btnNewButton_1);
 		
 		JButton botonCerrarSesion = new JButton("Cerrar Sesi\u00F3n");
@@ -202,7 +174,7 @@ public class Principal extends JFrame {
 					p.setVisible(true);
 			}
 		});
-		botonCerrarSesion.setBounds(1015, 61, 151, 23);
+		botonCerrarSesion.setBounds(673, 61, 151, 23);
 		panel.add(botonCerrarSesion);
 		
 		JButton botonInicioSesion = new JButton("Iniciar Sesi\u00F3n");
@@ -216,13 +188,13 @@ public class Principal extends JFrame {
 					panelSesion.setVisible(true);
 			}
 		});
-		botonInicioSesion.setBounds(1015, 61, 151, 23);
+		botonInicioSesion.setBounds(673, 61, 151, 23);
 		panel.add(botonInicioSesion);
 		
 		final JLabel usuarioLogeado = new JLabel("");
 		usuarioLogeado.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
-		usuarioLogeado.setBounds(895, 6, 288, 36);
+		usuarioLogeado.setBounds(713, 14, 215, 36);
 		if (AdmUsuario.isLogeado() == true && AdmUsuario.getUsuarioLogeadoTipo()=="usuario") {
 			usuarioLogeado.setText(AdmUsuario.getUsuarioLogeado().getUsername());
 		}else if(AdmUsuario.isLogeado() == true && AdmUsuario.getUsuarioLogeadoTipo()=="negocio"){
@@ -232,7 +204,7 @@ public class Principal extends JFrame {
 		panel.add(usuarioLogeado);
 		
 		JLabel imgUsuario = new JLabel("");
-		imgUsuario.setBounds(855, 6, 30, 30);
+		imgUsuario.setBounds(673, 20, 30, 30);
 		if (AdmUsuario.isLogeado()== true && AdmUsuario.getUsuarioLogeadoTipo()=="usuario") {
 				imgUsuario.setIcon(new ImageIcon("sources/imgUsuarios/" + AdmUsuario.getUsuarioLogeado().getUsername() +".jpg"));
 				ImageIcon icon = new ImageIcon("sources/imgUsuarios/" + AdmUsuario.getUsuarioLogeado().getUsername() +".jpg");
@@ -243,12 +215,13 @@ public class Principal extends JFrame {
 		panel.add(imgUsuario);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(36, -20, 150, 130);
+		panel_1.setBackground(new Color(255, 99, 71));
+		panel_1.setBounds(49, 2, 110, 110);
 		panel.add(panel_1);
 		
 		JLabel lblNewLabel = new JLabel("");
 		
-		lblNewLabel.setBounds(0, 0, 151, 129);
+		lblNewLabel.setBounds(0, 0, 110, 110);
 		lblNewLabel.setIcon(new ImageIcon("sources/HYGGE.png"));
 		ImageIcon icon= new ImageIcon("sources/HYGGE.png");
 		ImageIcon imag= new ImageIcon(icon.getImage().getScaledInstance(lblNewLabel.getWidth(), lblNewLabel.getHeight(), Image.SCALE_SMOOTH));
