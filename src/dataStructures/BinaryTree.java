@@ -8,7 +8,9 @@ public class BinaryTree{
 
 	  private BinaryNode root;
 	  public int numeroNodos;
-
+	  private ArrayList<Negocio> arrayNegocio = new ArrayList<Negocio>();
+	  
+	  
 	  public BinaryTree(){
 	    this.root = null;
 	    this.numeroNodos = 0;
@@ -22,6 +24,7 @@ public class BinaryTree{
 	  private BinaryNode insert(Negocio n,BinaryNode p){
 	    if(p==null){
 	      p = new BinaryNode(n);
+	      arrayNegocio.add(n);
 	      numeroNodos++;
 	      //p = nodo;
 	    }else{
@@ -105,29 +108,28 @@ public class BinaryTree{
 	  }
 
 	  public ArrayList<Negocio> allPrintB(){
-		  ArrayList<Negocio> list = null;
-	    if (root !=null){
-	      list = printB(root); 
-	    }
-	    return list;
+		  return arrayNegocio;
 	  }
 	  
-	  public ArrayList<Negocio> printB(BinaryNode p){
-		    ArrayList<Negocio> list = new ArrayList<Negocio>();
-		    while(findMin(root)!=p) {
-			    if(p.hIzq != null){
-			    	printB(p.hIzq);    
-			    }
-			    list.add(p.dato);
-			    if(p.hDer !=null){
-			    	printB(p.hDer);
-			    }
-		    }
-		    list.add(p.dato);
-		    return list;
-		  }
 	  
-
+	  public void allPostOrder() {
+		  if(root!=null) {
+			  postOrder(root);
+		  }
+	  }
+	  
+	    public void postOrder(BinaryNode node){
+	        if (node == null) {
+	            return;
+	        }
+	        postOrder(node.hIzq);
+	        postOrder(node.hDer);
+	        System.out.print(node.dato.getbName() + " ");
+	    }
+	  
+	  public void limpiarArray() {
+		  this.arrayNegocio.clear();
+	  }
 	  
 	  
 
@@ -247,5 +249,7 @@ public class BinaryTree{
 		root = null;
 		
 	}
+
+
 
 	}

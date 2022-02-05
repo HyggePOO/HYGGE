@@ -34,6 +34,7 @@ public class DoubleLinkedList<T> {
 	    size += 1;
 
 	  }
+	  /*
 	  public void Upgrade(int index, String Dato, int m) throws Exception{
 	    if (this.isEmpty()) {
 	      throw new Exception("Empty List");
@@ -45,7 +46,7 @@ public class DoubleLinkedList<T> {
 	      break;
 	      default: System.out.println("No funciona :v");
 	    }
-	  }
+	  }*/
 
 	  public boolean isEmpty() {
 	    return size == 0;
@@ -86,6 +87,7 @@ public class DoubleLinkedList<T> {
 	    return size;
 	  }
 
+	  /*
 	  public void printList() throws Exception {
 	    for (int i = 0; i < this.getSize(); i++) {
 	      try {
@@ -97,7 +99,7 @@ public class DoubleLinkedList<T> {
 	        System.out.println("Exception");
 	      }
 	    }
-	  }
+	  }*/
 
 	public T remove(int ind) throws Exception {
 	    if (this.isEmpty()) {
