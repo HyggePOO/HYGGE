@@ -17,7 +17,9 @@ import java.util.Scanner;
 
 import data.Negocio;
 import data.NegocioBusqueda;
+import data.Usuario;
 import dataStructures.BinaryTree;
+import dataStructures.DoubleLinkedList;
 
 
 
@@ -32,7 +34,7 @@ public class ManagerDeNegocio extends AdmUsuario{
 	}
 	
 	static void registrandoNegocio(Negocio n) {
-		negocio.insertBST(n);
+		negocio.add(n);
 	}
 	
 	
@@ -71,13 +73,14 @@ public class ManagerDeNegocio extends AdmUsuario{
 		int id = Integer.parseInt(sc.next().trim());
 		sc.close();
 		Negocio n = new Negocio(bname,nombre,contraseña,calificacion,categoriaUbicacion,categoriaFuncion,ciudad,direccion,numeroVotos, id);
-		NegocioBusqueda nb = new NegocioBusqueda(nombre,categoriaFuncion,ciudad);
+		NegocioBusqueda nb = new NegocioBusqueda(nombre,categoriaFuncion,ciudad,calificacion,numeroVotos);
 		negocioBus.add(nb);
-		negocio.insertBST(n);
+		negocio.add(n);
+		System.out.println("Negocio "+ bname + " añadido.");
 
 	}
 
-	public BinaryTree getNegocios() {
+	public DoubleLinkedList<Negocio> getNegocios() {
 		return negocio;
 
 	}
@@ -86,11 +89,12 @@ public class ManagerDeNegocio extends AdmUsuario{
 		return negocioBus;
 	}
 	
-	public void writingRecords() {
+	public void writingRecords() throws Exception {
 		try {
 			FileWriter myWriter = new FileWriter("data/negocios/negocios.txt");
-			ArrayList<Negocio> ne = negocio.allPrintB();
-			for (Negocio n : ne) {
+			//negocio.allPostOrder();
+			for (int i  = 0; i< negocio.getSize();i++) {
+				Negocio n = negocio.getElement(i);
 				myWriter.write(n.toString());
 				myWriter.write("\n");
 			}
@@ -110,13 +114,13 @@ public class ManagerDeNegocio extends AdmUsuario{
 	}
 	
 	public static void registroNegocio(String bname,String nombre,String contraseña, double calificacion, String categoriaUbicacion,String categoriaFuncion, String ciudad,String direccion) {
-		int id = negocio.size() + 1;
+		int id = negocio.getSize() + 1;
 		int numeroVotos = 0;
 		Negocio n = new Negocio(bname,nombre,contraseña,calificacion,categoriaUbicacion,categoriaFuncion,ciudad,direccion,numeroVotos, id);
-		negocio.insertBST(n);
+		negocio.add(n);
 	}
 	
-	public static boolean registro(String bname,String nombre, String contraseña, String categoriaU, String categoriaF, String ciudad) {
+	public static boolean registro(String bname,String nombre, String contraseña, String categoriaU, String categoriaF, String ciudad) throws Exception {
 		boolean bnameDuplicado = bnameDuplicado(bname);
 		boolean nombreDuplicado = nombreDuplicado(nombre);
 		boolean categoriaUCorrecta = true;
@@ -141,54 +145,76 @@ public class ManagerDeNegocio extends AdmUsuario{
 		return true;
 	}
 	
-	static Negocio getNegocioLog(String username) {
-		return negocio.allTraverseFindbName(username);
+	public static void cambioLista(ArrayList<NegocioBusqueda> arr) {
+		negocioBus = arr;
 	}
 	
-	static Negocio getNegocioL(String username) {
-		return negocio.allTraverseFindName(username);
+	static Negocio getNegocioLog(String username) throws Exception {
+		for (int i=0; i< negocio.getSize();i++) {
+			if(((negocio.getElement(i).getbName()).equals(username))) {
+				return negocio.getElement(i);
+			}
+		}
+		return null;
+	}
+	
+	static Negocio getNegocioL(String username) throws Exception {
+		for (int i=0; i< negocio.getSize();i++) {
+			if(((negocio.getElement(i).getNombre()).equals(username))) {
+				return negocio.getElement(i);
+			}
+		}
+		return null;
 	}
 	
 	
 	
-	public static boolean loginNegocio(String username, String contraseña) {
+	public static boolean loginNegocio(String username, String contraseña) throws Exception {
 		boolean usuarioCorrecto = bnameDuplicado(username);
-		boolean contraseñaCorrecta = contraseñaDuplicada(contraseña);
+		int id = getId(username);
+		boolean contraseñaCorrecta = contraseñaDuplicada(contraseña,id);
 		if(usuarioCorrecto == true && contraseñaCorrecta == true) {
 			return true;
 		}
 		return false;
 	}
 	
-	public static boolean nombreDuplicado(String nombre) {
-		if(negocio.allTraverseFindName(nombre) != null) {
-			return true;
+	public static boolean nombreDuplicado(String nombre) throws Exception{
+		for (int i = 0; i < negocio.getSize(); i++) {
+			if((negocio.getElement(i).getNombre().equals(nombre))){
+				System.out.println(i);
+				return true;			
+			}
 		}
 		return false;
 	}
 	
-	public static boolean bnameDuplicado(String bname) {
-		if(negocio.allTraverseFindbName(bname) != null) {
-			return true;
+	public static boolean bnameDuplicado(String bname) throws Exception {
+		for (int i = 0; i < negocio.getSize(); i++) {
+			if((negocio.getElement(i).getbName().equals(bname))){
+				System.out.println(i);
+				return true;			
+			}
 		}
-		
 		return false;
 	}
 	
-	public static int getId(String bname) {
-		if(negocio.allTraverseFindbName(bname) != null) {
-			Negocio n = negocio.allTraverseFindbName(bname);
-			return n.getId();
+	
+	public static int getId(String username) throws Exception {
+		for (int i = 0; i < negocio.getSize();i++){
+			if(((negocio.getElement(i)).getbName()).equals(username)) {
+				return i;
+			}
 		}
-		
 		return 0;
 	}
 	
-	private static boolean contraseñaDuplicada(String contraseña) {
-		if(negocio.allTraverseFindPassword(contraseña)!=null) {
+	private static boolean contraseñaDuplicada(String contraseña, int id) throws Exception {
+		if((negocio.getElement(id).getContraseña().equals(contraseña))) {
 			return true;
 		}
-		return false;
+		System.out.println((usuario.getElement(id)).getContraseña());
+	return false;
 	}
 	
 	public static boolean cambioContraseña(String actualContraseña,String nuevaContraseña) {
@@ -203,6 +229,10 @@ public class ManagerDeNegocio extends AdmUsuario{
 			return false;
 		}
 		return true;
+	}
+	
+	public static int getSize() {
+		return negocio.getSize();
 	}
 	
 	 /**

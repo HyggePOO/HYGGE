@@ -14,7 +14,7 @@ import data.Usuario;
 public class AdmUsuario {
 	
 	protected static DoubleLinkedList<Usuario> usuario;
-	protected static BinaryTree negocio;
+	protected static DoubleLinkedList<Negocio> negocio;
 	protected static String usuarioLogeado ="";
 	protected static String usuarioLogeadoTipo;
 	protected static ArrayList<NegocioBusqueda> negocioBus;
@@ -22,7 +22,7 @@ public class AdmUsuario {
 	
 	public AdmUsuario() {
 		usuario = new DoubleLinkedList<Usuario>();
-		negocio = new BinaryTree();
+		negocio = new DoubleLinkedList<Negocio>();
 		negocioBus = new ArrayList<NegocioBusqueda>();
 	}
 	
@@ -48,7 +48,7 @@ public class AdmUsuario {
 		return ManagerDeUsuario.getUsuarioLog(usuarioLogeado);
 	}
 	
-	public static Negocio getNegocioLogeado() {
+	public static Negocio getNegocioLogeado() throws Exception {
 		return ManagerDeNegocio.getNegocioLog(usuarioLogeado);
 	}
 	
@@ -56,7 +56,7 @@ public class AdmUsuario {
 		return ManagerDeUsuario.getUsuarioLog(usuario);
 	}
 	
-	public static Negocio getNegocio(String negocio) {
+	public static Negocio getNegocio(String negocio) throws Exception {
 		return ManagerDeNegocio.getNegocioL(negocio);
 	}
 

@@ -2,6 +2,8 @@ package businessLogic;
 
 import data.ListaNegocios;
 import data.ListaUsuarios;
+import data.Negocio;
+import dataStructures.DoubleLinkedList;
 import gui.Principal;
 
 public class Runner {
@@ -16,6 +18,11 @@ public class Runner {
 		Principal frame = new Principal(negocios);
 		cargar();
 		frame.setVisible(true);
+		DoubleLinkedList<Negocio> o = negocios.getAllBuss();
+		for(int i=0;i<o.getSize();i++) {
+			System.out.println(o.getElement(i).getbName());
+		}
+		
 	}
 	
 	public static void guardar() throws Exception {
