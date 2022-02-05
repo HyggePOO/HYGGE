@@ -138,5 +138,7 @@ public class Negocio {
 	public int maxTo(Negocio n){
 		return this.nombre.compareTo(n.nombre);
 	}
+	
+
 
 }
