@@ -76,6 +76,7 @@ public class ManagerDeNegocio extends AdmUsuario{
 		NegocioBusqueda nb = new NegocioBusqueda(nombre,categoriaFuncion,ciudad,calificacion,numeroVotos);
 		negocioBus.add(nb);
 		negocio.add(n);
+		negocioH.set(contraseña, id);
 		System.out.println("Negocio "+ bname + " añadido.");
 
 	}
@@ -170,9 +171,10 @@ public class ManagerDeNegocio extends AdmUsuario{
 	
 	
 	public static boolean loginNegocio(String username, String contraseña) throws Exception {
-		boolean usuarioCorrecto = bnameDuplicado(username);
-		int id = getId(username);
-		boolean contraseñaCorrecta = contraseñaDuplicada(contraseña,id);
+		Negocio neg = negocio.getNegocio(username);
+		int id = neg.getId();
+		boolean usuarioCorrecto = bnameCorrecto(username,id);
+		boolean contraseñaCorrecta = contraseñaCorrecta(contraseña,id);
 		if(usuarioCorrecto == true && contraseñaCorrecta == true) {
 			return true;
 		}
@@ -200,7 +202,16 @@ public class ManagerDeNegocio extends AdmUsuario{
 	}
 	
 	
-	public static int getId(String username) throws Exception {
+	public static boolean bnameCorrecto(String bname,int id) throws Exception {
+		if((negocio.getNegocioById(id).getbName().equals(bname))){
+			System.out.println(id);
+			return true;			
+		}
+	return false;
+}
+	
+	
+	public static int getPos(String username) throws Exception {
 		for (int i = 0; i < negocio.getSize();i++){
 			if(((negocio.getElement(i)).getbName()).equals(username)) {
 				return i;
@@ -209,8 +220,8 @@ public class ManagerDeNegocio extends AdmUsuario{
 		return 0;
 	}
 	
-	private static boolean contraseñaDuplicada(String contraseña, int id) throws Exception {
-		if((negocio.getElement(id).getContraseña().equals(contraseña))) {
+	private static boolean contraseñaCorrecta(String contraseña, int id) throws Exception {
+		if((negocio.getNegocioById(id).getContraseña().equals(contraseña))) {
 			return true;
 		}
 		System.out.println((usuario.getElement(id)).getContraseña());
@@ -232,7 +243,15 @@ public class ManagerDeNegocio extends AdmUsuario{
 	}
 	
 	public static int getSize() {
-		return negocio.getSize();
+		return negocioBus.size();
+	}
+	
+	public void elimia(Negocio n) throws Exception {
+		String ne = n.getbName();
+		int id = getPos(ne);
+		negocio.remove(id);
+		negocioBus.remove(id);
+		
 	}
 	
 	 /**
@@ -310,4 +329,5 @@ public class ManagerDeNegocio extends AdmUsuario{
 			System.out.println("Error guardando");
 		}
 	}
+
 }

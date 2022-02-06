@@ -66,6 +66,7 @@ public class ManagerDeUsuario extends AdmUsuario{
 		sc.close();
 		Usuario u = new Usuario(username,contraseña,nombre,edad, id);
 		usuario.add(u);
+		usuarioH.set(contraseña, id);
 
 	}
 
@@ -115,17 +116,27 @@ public class ManagerDeUsuario extends AdmUsuario{
 	}
 	
 	public static boolean loginUsuario(String username, String contraseña) throws Exception {
-		boolean usuarioCorrecto = nombreDuplicado(username);
-		int id = getId(username);
-		boolean contraseñaCorrecta = contraseñaDuplicada(contraseña,id);
+		Usuario user = usuario.getUser(username);
+		//System.out.println(usuarioH.get(contraseña));
+		int id = user.getId();
+		boolean usuarioCorrecto = nombreCorrecto(username,id);
+		boolean contraseñaCorrecta = contraseñaCorrecta(contraseña,id);
 		if(usuarioCorrecto == true && contraseñaCorrecta == true) {
 			return true;
 		}
 		return false;
 	}
 	
+	private static boolean nombreCorrecto(String username,int id) throws Exception {
+		if(((usuario.getUserById(id)).getUsername()).equals(username)) {
+			System.out.println(id);
+			return true;
+		}
+		return false;
+	}
+	
 	private static boolean nombreDuplicado(String username) throws Exception {
-		for (int i = 0; i < usuario.getSize();i++){
+		for (int i=0; i< usuario.getSize();i++) {
 			if(((usuario.getElement(i)).getUsername()).equals(username)) {
 				System.out.println(i);
 				return true;
@@ -143,17 +154,8 @@ public class ManagerDeUsuario extends AdmUsuario{
 		return null;
 	}
 	
-	public static int getId(String username) throws Exception {
-		for (int i = 0; i < usuario.getSize();i++){
-			if(((usuario.getElement(i)).getUsername()).equals(username)) {
-				return i;
-			}
-		}
-		return 0;
-	}
-	
-	private static boolean contraseñaDuplicada(String contraseña,int id) throws Exception {
-			if(((usuario.getElement(id)).getContraseña()).equals(contraseña)) {
+	private static boolean contraseñaCorrecta(String contraseña,int id) throws Exception {
+			if(((usuario.getUserById(id)).getContraseña()).equals(contraseña)) {
 				return true;
 			}
 			System.out.println((usuario.getElement(id)).getContraseña());

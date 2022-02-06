@@ -136,4 +136,91 @@ public class DoubleLinkedList<T> {
 		this.size = 0;
 	}
 	
+	public Usuario getUser(String user) throws Exception {
+		if (this.isEmpty()) {
+		      throw new Exception("Empty List");
+		    }
+		    ListNode<Usuario> aux = null;
+		    aux = (ListNode<Usuario>) head;
+		    Usuario currentElement = null;
+		    int cont = 0;
+		    while (aux != null) {
+		      if (aux.element.getUsername().equals(user)) {
+		        currentElement =  aux.element;
+		        break;
+		      }
+		      aux = aux.next;
+		      cont += 1;
+		    }
+		    if (currentElement == null) {
+		      throw new Exception("Not found");
+		    }
+		    return currentElement;
+	}
+	
+	public Negocio getNegocio(String negocio) throws Exception {
+		if (this.isEmpty()) {
+		      throw new Exception("Empty List");
+		    }
+		    ListNode<Negocio> aux = null;
+		    aux = (ListNode<Negocio>) head;
+		    Negocio currentElement = null;
+		    int cont = 0;
+		    while (aux != null) {
+		      if (aux.element.getbName().equals(negocio)) {
+		        currentElement =  aux.element;
+		        break;
+		      }
+		      aux = aux.next;
+		      cont += 1;
+		    }
+		    if (currentElement == null) {
+		      throw new Exception("Not found");
+		    }
+		    return currentElement;
+	}
+
+	public Usuario getUserById(int id) throws Exception {
+		if (this.isEmpty()) {
+		      throw new Exception("Empty List");
+		    }
+		    ListNode<Usuario> aux = null;
+		    aux = (ListNode<Usuario>) head;
+		    Usuario currentElement = null;
+		    int cont = 0;
+		    while (aux != null) {
+		      if (aux.element.getId()==id) {
+		        currentElement =  aux.element;
+		        break;
+		      }
+		      aux = aux.next;
+		      cont += 1;
+		    }
+		    if (currentElement == null) {
+		      throw new Exception("Not found");
+		    }
+		    return currentElement;
+	}
+	public Negocio getNegocioById(int id) throws Exception {
+		if (this.isEmpty()) {
+		      throw new Exception("Empty List");
+		    }
+		    ListNode<Negocio> aux = null;
+		    aux = (ListNode<Negocio>) head;
+		    Negocio currentElement = null;
+		    int cont = 0;
+		    while (aux != null) {
+		      if (aux.element.getId()==id) {
+		        currentElement =  aux.element;
+		        break;
+		      }
+		      aux = aux.next;
+		      cont += 1;
+		    }
+		    if (currentElement == null) {
+		      throw new Exception("Not found");
+		    }
+		    return currentElement;
+	}
+	
 }

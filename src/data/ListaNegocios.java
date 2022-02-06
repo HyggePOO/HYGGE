@@ -10,7 +10,7 @@ import dataStructures.PriorityQueue;
 
 
 public class ListaNegocios {
-	private ManagerDeNegocio lista;
+	private static ManagerDeNegocio lista;
 
 	public ListaNegocios(){
 		this.lista = new ManagerDeNegocio("data/negocios/negocios.txt");
@@ -49,5 +49,10 @@ public class ListaNegocios {
 		}
 		lista.cambioLista(salida);
 
+	}
+
+	public static void eliminarUsuario(Negocio negocio) throws Exception {
+		lista.elimia(negocio);
+		
 	}
 }

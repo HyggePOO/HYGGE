@@ -153,8 +153,20 @@ public class Buscador extends JFrame {
 					JOptionPane.showMessageDialog(null, "Seleccione un destino","Intente nuevamente",JOptionPane.ERROR_MESSAGE);
 				}else {
 					String nombre = (String) table.getValueAt(table.getSelectedRow(), 0);
-					Negocio pagina = AdmUsuario.getNegocio(nombre);
-					VentanaNegocio vn = new VentanaNegocio(pagina);
+					Negocio pagina = null;
+					try {
+						pagina = AdmUsuario.getNegocio(nombre);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					VentanaNegocio vn = null;
+					try {
+						vn = new VentanaNegocio(pagina);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					vn.setVisible(true);
 				}
 			}

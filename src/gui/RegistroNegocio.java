@@ -206,31 +206,36 @@ public class RegistroNegocio extends JFrame {
 						 categoriaFuncion = "Ecoturismo";
 					 }
 					 
-					if(ManagerDeNegocio.registro(nombreInicio.getText(),nombre.getText(),contraseña.getText(),categoriaUbicacion,categoriaFuncion,ciudad.getText())==true) {
-						ManagerDeNegocio.registroNegocio(nombreInicio.getText(),nombre.getText(),contraseña.getText(),0,categoriaUbicacion,categoriaFuncion,ciudad.getText(),direccion.getText());
-						ManagerDeNegocio.guardarDescripcion(nombreInicio.getText(),descripcion.getText());
-						try {
-							Runner.guardar();
-						} catch (Exception e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
+					try {
+						if(ManagerDeNegocio.registro(nombreInicio.getText(),nombre.getText(),contraseña.getText(),categoriaUbicacion,categoriaFuncion,ciudad.getText())==true) {
+							ManagerDeNegocio.registroNegocio(nombreInicio.getText(),nombre.getText(),contraseña.getText(),0,categoriaUbicacion,categoriaFuncion,ciudad.getText(),direccion.getText());
+							ManagerDeNegocio.guardarDescripcion(nombreInicio.getText(),descripcion.getText());
+							try {
+								Runner.guardar();
+							} catch (Exception e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							ManagerDeNegocio.guardarImagen(ruta1,nombreInicio.getText() + "1");
+							ManagerDeNegocio.guardarImagen(ruta2,nombreInicio.getText() + "2");
+							ManagerDeNegocio.guardarImagen(ruta3,nombreInicio.getText() + "3");
+							ManagerDeNegocio.guardarImagen(ruta4,nombreInicio.getText() + "4");
+							ManagerDeNegocio.guardarImagen(ruta5,nombreInicio.getText() + "5");
+							Runner.cargar();
+							JOptionPane.showMessageDialog(null, "Negocio Registrado","HYGGE",JOptionPane.INFORMATION_MESSAGE);
+							InicioNegocio in = new InicioNegocio(listaNegocio);
+							in.setVisible(true);
+							dispose();
+						}else {
+							JOptionPane.showMessageDialog(null, "Error en el registro, nombre de negocio ya escogido, categoria inexistente o ciudad inexistente","Intente nuevamente",JOptionPane.ERROR_MESSAGE);
+							nombre.setText("");
+							ciudad.setText("");
+							nombreInicio.setText("");
+							nombre.requestFocus();
 						}
-						ManagerDeNegocio.guardarImagen(ruta1,nombreInicio.getText() + "1");
-						ManagerDeNegocio.guardarImagen(ruta2,nombreInicio.getText() + "2");
-						ManagerDeNegocio.guardarImagen(ruta3,nombreInicio.getText() + "3");
-						ManagerDeNegocio.guardarImagen(ruta4,nombreInicio.getText() + "4");
-						ManagerDeNegocio.guardarImagen(ruta5,nombreInicio.getText() + "5");
-						Runner.cargar();
-						JOptionPane.showMessageDialog(null, "Negocio Registrado","HYGGE",JOptionPane.INFORMATION_MESSAGE);
-						InicioNegocio in = new InicioNegocio(listaNegocio);
-						in.setVisible(true);
-						dispose();
-					}else {
-						JOptionPane.showMessageDialog(null, "Error en el registro, nombre de negocio ya escogido, categoria inexistente o ciudad inexistente","Intente nuevamente",JOptionPane.ERROR_MESSAGE);
-						nombre.setText("");
-						ciudad.setText("");
-						nombreInicio.setText("");
-						nombre.requestFocus();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 					
 					RegistroNegocio l = new RegistroNegocio(listaNegocio);

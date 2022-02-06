@@ -44,8 +44,9 @@ public class VentanaNegocio extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws Exception 
 	 */
-	public VentanaNegocio(final Negocio negocio) {
+	public VentanaNegocio(final Negocio negocio) throws Exception {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("HYGGE - "+ negocio.getNombre());

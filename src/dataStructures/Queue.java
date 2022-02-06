@@ -5,6 +5,7 @@ import java.util.LinkedList;
 class Queue <T> extends LinkedList {
 
 	  private QueueNode<T> head;
+	  public int size;
 
 	  public Queue() {
 	    this.head = null;
@@ -23,7 +24,7 @@ class Queue <T> extends LinkedList {
 	      }
 	      aux.setNext(newNode);
 	    }
-
+	    size += 1;
 	  }
 
 	  public QueueNode<T> dequeue() throws Exception {
@@ -36,12 +37,32 @@ class Queue <T> extends LinkedList {
 	      head = head.getNext();
 	      deletedNode.setNext(null);
 	    }
-	  
+	    size -= 1;
 	    return deletedNode;
 	  }
 
 	  public boolean isEmpty() {
 	    return head == null;
 	  }
+	  
+	  public QueueNode<T> getValue(int index) {
+		    if(isEmpty()) {
+		      return null;
+		    }
+
+		    QueueNode<T> value = null;
+		    QueueNode<T> aux = head;
+		    int counter = 0;
+		    while(aux != null) {
+		      if(counter == index) {
+		        value = aux;
+		        break;
+		      }
+		      counter += 1;
+		      aux = aux.getNext();
+		    }
+
+		    return value;
+		  }
 
 	}

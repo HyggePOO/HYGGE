@@ -87,24 +87,29 @@ public class InicioNegocio extends JFrame {
 				char [] contraseña = contraseña1.getPassword();
 				String contraseñaFinal = new String(contraseña);
 				
-				if(ManagerDeNegocio.loginNegocio(username1.getText(),contraseñaFinal)==true) {
-					dispose();
-					JOptionPane.showMessageDialog(null, "Bienvenido a HYGGE","Ingresaste",JOptionPane.INFORMATION_MESSAGE);
-					AdmUsuario.setUsuarioLogeado(username1.getText(),"negocio");
-					Principal p = null;
-					try {
-						p = new Principal(listaNegocio);
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+				try {
+					if(ManagerDeNegocio.loginNegocio(username1.getText(),contraseñaFinal)==true) {
+						dispose();
+						JOptionPane.showMessageDialog(null, "Bienvenido a HYGGE","Ingresaste",JOptionPane.INFORMATION_MESSAGE);
+						AdmUsuario.setUsuarioLogeado(username1.getText(),"negocio");
+						Principal p = null;
+						try {
+							p = new Principal(listaNegocio);
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						p.setVisible(true);
+					
+					} else {
+						JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrectos","No se puede ingresar",JOptionPane.ERROR_MESSAGE);
+						username1.setText("");
+						contraseña1.setText("");
+						username1.requestFocus();
 					}
-					p.setVisible(true);
-				
-				} else {
-					JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrectos","No se puede ingresar",JOptionPane.ERROR_MESSAGE);
-					username1.setText("");
-					contraseña1.setText("");
-					username1.requestFocus();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		});

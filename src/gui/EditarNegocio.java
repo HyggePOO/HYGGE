@@ -8,8 +8,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import businessLogic.AdmUsuario;
 import businessLogic.ManagerDeNegocio;
 import businessLogic.Runner;
+import data.ListaNegocios;
 import data.Negocio;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -43,6 +45,7 @@ public class EditarNegocio extends JFrame {
 	String ruta5 = "";
 	private JTextField nombre;
 	private JTextField ciudad;
+	ListaNegocios listaNegocio;
 	
 	Toolkit t = Toolkit.getDefaultToolkit();
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -220,6 +223,26 @@ public class EditarNegocio extends JFrame {
 		lblNewLabel_1_1_1.setBounds(471, 73, 162, 23);
 		contentPane.add(lblNewLabel_1_1_1);
 		
+		
+		JButton btnEliminar = new JButton("Eliminar Negocio");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdmUsuario.cerrarSesion();
+				dispose();
+				try {
+					ListaNegocios.eliminarUsuario(negocio);
+					Runner.guardar();
+					Runner.cargar();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		}
+		});
+		btnEliminar.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnEliminar.setBounds(471, 417, 162, 23);
+		contentPane.add(btnEliminar);
+		
 		final JLabel imagenPerfil = new JLabel("");
 		imagenPerfil.setBounds(471, 96, 150, 150);
 		imagenPerfil.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 0, 0)));
@@ -366,7 +389,13 @@ public class EditarNegocio extends JFrame {
 		JButton btnNewButton = new JButton("Volver");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaNegocio vn = new VentanaNegocio(negocio);
+				VentanaNegocio vn = null;
+				try {
+					vn = new VentanaNegocio(negocio);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				vn.setVisible(true);
 				dispose();
 			}
@@ -387,19 +416,24 @@ public class EditarNegocio extends JFrame {
 		JButton botonNombre = new JButton("Cambiar Nombre");
 		botonNombre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (nombre.getText().length() > 0 && ManagerDeNegocio.nombreDuplicado(nombre.getText())== false) {
-					negocio.setNombre(nombre.getText());
-					try {
-						Runner.guardar();
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+				try {
+					if (nombre.getText().length() > 0 && ManagerDeNegocio.nombreDuplicado(nombre.getText())== false) {
+						negocio.setNombre(nombre.getText());
+						try {
+							Runner.guardar();
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						Runner.cargar();
+						JOptionPane.showMessageDialog(null, "Nombre cambiado con éxito","HYGGE",JOptionPane.INFORMATION_MESSAGE);
+					}else {
+						JOptionPane.showMessageDialog(null, "Nombre de negocio ya en uso","Intente nuevamente",JOptionPane.ERROR_MESSAGE);
+						
 					}
-					Runner.cargar();
-					JOptionPane.showMessageDialog(null, "Nombre cambiado con éxito","HYGGE",JOptionPane.INFORMATION_MESSAGE);
-				}else {
-					JOptionPane.showMessageDialog(null, "Nombre de negocio ya en uso","Intente nuevamente",JOptionPane.ERROR_MESSAGE);
-					
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 
 			}

@@ -147,7 +147,7 @@ public class Principal extends JFrame {
 					}
 					vn.setVisible(true);
 				}else {
-					JOptionPane.showMessageDialog(null, "Primero debe iniciar sesiÃ³n","Intente nuevamente",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Primero debe iniciar sesión","Intente nuevamente",JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -227,6 +227,11 @@ public class Principal extends JFrame {
 		ImageIcon imag= new ImageIcon(icon.getImage().getScaledInstance(lblNewLabel.getWidth(), lblNewLabel.getHeight(), Image.SCALE_SMOOTH));
 		lblNewLabel.setIcon(imag);
 		panel_1.add(lblNewLabel);
+		
+		JLabel lblNewLabel_2 = new JLabel("B\u00FAsqueda de negocios y sitios tur\u00EDsticos");
+		lblNewLabel_2.setFont(new Font("Segoe Print", Font.BOLD, 14));
+		lblNewLabel_2.setBounds(169, 44, 315, 30);
+		panel.add(lblNewLabel_2);
 		
 		JLabel cate = new JLabel("Categorias");
 		cate.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 27));
