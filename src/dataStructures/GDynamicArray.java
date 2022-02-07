@@ -1,7 +1,10 @@
 package dataStructures;
 
 // Array dinámico genérico para map en hash
-
+/**
+ * @author Valentina Colmenares, Daniel Lozano & Kevin Rincón
+ * 
+ */
 class GDynamicArray <T> {
   
   private T[] staticArray;

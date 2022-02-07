@@ -4,7 +4,6 @@ package data;
 import java.util.ArrayList;
 
 import businessLogic.ManagerDeNegocio;
-import dataStructures.BinaryTree;
 import dataStructures.DoubleLinkedList;
 import dataStructures.PriorityQueue;
 
@@ -24,7 +23,7 @@ public class ListaNegocios {
 		return lista.getBuscadorNegocios();
 	}
 	
-	public void loadBuss() {
+	public void loadBuss() throws Exception {
 		this.lista.readData();
 		
 	}

@@ -1,5 +1,8 @@
 package dataStructures;
-
+/**
+ * @author Valentina Colmenares, Daniel Lozano & Kevin Rincón
+ * 
+ */
 class HashNode {
 	 
 	  public String key;

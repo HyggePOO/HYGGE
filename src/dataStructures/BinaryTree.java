@@ -3,7 +3,10 @@ package dataStructures;
 import java.util.ArrayList;
 
 import data.Negocio;
-
+/**
+ * @author Valentina Colmenares, Daniel Lozano, Mateo Ortiz & Kevin Rincón
+ * 
+ */
 public class BinaryTree{
 
 	  private BinaryNode root;

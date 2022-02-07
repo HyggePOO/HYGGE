@@ -7,7 +7,10 @@ import javax.swing.table.AbstractTableModel;
 import data.NegocioBusqueda;
 
 
-
+/**
+ * @author Valentina Colmenares, Daniel Lozano, Mateo Ortiz, Kevin Rincón & Andres Moreno
+ * 
+ */
 @SuppressWarnings("serial")
 public class NegociosTableModel extends AbstractTableModel {
 	protected ArrayList<NegocioBusqueda> negocios1;

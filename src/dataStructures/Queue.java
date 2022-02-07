@@ -1,7 +1,10 @@
 package dataStructures;
 
 import java.util.LinkedList;
-
+/**
+ * @author Valentina Colmenares, Daniel Lozano, Mateo Ortiz & Kevin Rincón
+ * 
+ */
 class Queue <T> extends LinkedList {
 
 	  private QueueNode<T> head;

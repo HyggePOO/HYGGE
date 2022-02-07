@@ -1,8 +1,6 @@
 
 package data;
 
-import java.util.ArrayList;
-
 import businessLogic.ManagerDeUsuario;
 import dataStructures.DoubleLinkedList;
 

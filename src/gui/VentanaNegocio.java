@@ -31,7 +31,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
-
+/**
+ * @author Valentina Colmenares, Daniel Lozano, Mateo Ortiz, Kevin Rincón & Andres Moreno
+ * 
+ */
 @SuppressWarnings("serial")
 public class VentanaNegocio extends JFrame {
 

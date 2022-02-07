@@ -5,7 +5,10 @@ import data.ListaUsuarios;
 import data.Negocio;
 import dataStructures.DoubleLinkedList;
 import gui.Principal;
-
+/**
+ * @author Valentina Colmenares, Daniel Lozano, Mateo Ortiz & Kevin Rincón
+ * 
+ */
 public class Runner {
 
 	/**
@@ -30,10 +33,9 @@ public class Runner {
 			negocios.saveBuss();
 	}
 	
-	public static void cargar() {
+	public static void cargar() throws Exception {
 		ManagerDeUsuario.reiniciarUsuarios();
 		ManagerDeNegocio.reiniciarNegocios();
-		ManagerDeNegocio.reiniciarNegociosBusqueda();
 		miembros.loadUsers();
 		negocios.loadBuss();
 	}

@@ -11,7 +11,10 @@ import data.Negocio;
 import data.NegocioBusqueda;
 import data.Usuario;
 
-
+/**
+ * @author Valentina Colmenares, Daniel Lozano, Mateo Ortiz & Kevin Rincón
+ * 
+ */
 public class AdmUsuario {
 	
 	protected static DoubleLinkedList<Usuario> usuario;
@@ -22,13 +25,17 @@ public class AdmUsuario {
 	protected static boolean logeado = false;
 	protected static HashTable usuarioH;
 	protected static HashTable negocioH;
+	protected static HashTable negocioContraseñaH;
+	protected static HashTable usuarioContraseñaH;
 	
 	public AdmUsuario() {
 		usuario = new DoubleLinkedList<Usuario>();
 		negocio = new DoubleLinkedList<Negocio>();
 		negocioBus = new ArrayList<NegocioBusqueda>();
-		usuarioH = new HashTable(20);
-		negocioH = new HashTable(20);
+		usuarioH = new HashTable(40);
+		usuarioContraseñaH = new HashTable(40);
+		negocioH = new HashTable(40);
+		negocioContraseñaH = new HashTable(40);
 	}
 	
 	public static boolean isLogeado() {

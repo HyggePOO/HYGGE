@@ -34,7 +34,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-
+/**
+ * @author Valentina Colmenares, Daniel Lozano, Mateo Ortiz, Kevin Rincón & Andres Moreno
+ * 
+ */
 @SuppressWarnings("serial")
 public class Buscador extends JFrame {
 

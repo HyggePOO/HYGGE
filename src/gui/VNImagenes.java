@@ -14,7 +14,10 @@ import javax.swing.border.EmptyBorder;
 import data.Negocio;
 import javax.swing.JLabel;
 
-
+/**
+ * @author Valentina Colmenares, Daniel Lozano, Mateo Ortiz, Kevin Rincón & Andres Moreno
+ * 
+ */
 @SuppressWarnings("serial")
 public class VNImagenes extends JFrame {
 

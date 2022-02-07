@@ -2,7 +2,10 @@ package dataStructures;
 
 import data.Negocio;
 import data.Usuario;
-
+/**
+ * @author Valentina Colmenares, Daniel Lozano, Mateo Ortiz & Kevin Rincón
+ * 
+ */
 public class DoubleLinkedList<T> {
 
 	  private ListNode<T> head;

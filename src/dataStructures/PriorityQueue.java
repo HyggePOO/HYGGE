@@ -1,5 +1,8 @@
 package dataStructures;
-
+/**
+ * @author Valentina Colmenares, Daniel Lozano, Mateo Ortiz & Kevin Rincón
+ * 
+ */
 import data.NegocioBusqueda;
 /*
 public class PriorityQueue {

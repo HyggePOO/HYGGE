@@ -32,7 +32,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
-
+/**
+ * @author Valentina Colmenares, Daniel Lozano, Mateo Ortiz, Kevin Rincón & Andres Moreno
+ * 
+ */
 @SuppressWarnings("serial")
 public class Registro extends JFrame{
 

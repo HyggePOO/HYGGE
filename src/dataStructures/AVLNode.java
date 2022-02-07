@@ -1,7 +1,10 @@
 package dataStructures;
 
 import data.Negocio;
-
+/**
+ * @author Valentina Colmenares, Daniel Lozano, Mateo Ortiz & Kevin Rincón
+ * 
+ */
 class AVLNode {
 	  
 	  public AVLNode hIzq;

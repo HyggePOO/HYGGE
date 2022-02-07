@@ -15,7 +15,6 @@ import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.Calendar;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
@@ -26,10 +25,9 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 /**
- * @author Mateo Ortiz & Andres Moreno
+ * @author Valentina Colmenares, Daniel Lozano, Mateo Ortiz, Kevin Rincón & Andres Moreno
  * 
  */
-
 @SuppressWarnings("serial")
 public class Principal extends JFrame {
 
@@ -55,9 +53,6 @@ public class Principal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		Calendar c1 = Calendar.getInstance();
-		final int mes = c1.get(Calendar.MONTH)+1;
-		ImageIcon icdestacado = new ImageIcon("sources/iconos/destacado.jpeg");
 		
 		final JPanel panelSesion = new JPanel();
 		panelSesion.setBorder(new EmptyBorder(2, 2, 2, 2));

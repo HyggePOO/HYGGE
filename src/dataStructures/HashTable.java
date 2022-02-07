@@ -1,5 +1,9 @@
 package dataStructures;
 import java.util.Random;
+/**
+ * @author Valentina Colmenares, Daniel Lozano, Mateo Ortiz & Kevin Rincón
+ * 
+ */
 public class HashTable {
 
   // La clase HashTable tiene como función consultar si una clave hace parte de un usuario
@@ -119,14 +123,16 @@ public class HashTable {
     boolean found = false;    
     int hashValue = polyHash(key);
     Queue<HashNode> L = map.getValue(hashValue);
-
+    if(L == null) {
+    	return false;
+    }
     int sizeQ = L.size;
     for(int i = 0 ; i < sizeQ ; i++) {
       
       try {
         HashNode currentHashNode = L.getValue(i).getData();
         // Comparamos que el nombre del negocio key esté en la lista
-        if(key == currentHashNode.key) {
+        if(key.equals(currentHashNode.key)) {
          found = true;
         }
       } catch(Exception e) {
@@ -151,7 +157,7 @@ public class HashTable {
       try {
         HashNode currentHashNode = L.getValue(i).getData();
         // Comparamos que el nombre del negocio key esté en la lista
-        if(key == currentHashNode.key) {
+        if(key.equals(currentHashNode.key) ) {
           return currentHashNode.value;
         }
       } catch(Exception e) {
@@ -163,6 +169,19 @@ public class HashTable {
       throw new Exception("El elemento no existe");
     }
     return value;
+  }
+  
+  public void delete(String key) throws Exception{
+	    int borrar = get(key);
+	    map.remove(borrar);
+	    size--;
+	  }
+  
+  public void clear() throws Exception{
+	  while(size!=0) {
+		  map.remove(size);
+		  size--;
+	  }
   }
   
 }

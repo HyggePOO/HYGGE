@@ -33,7 +33,10 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
 
-
+/**
+ * @author Valentina Colmenares, Daniel Lozano, Mateo Ortiz, Kevin Rincón & Andres Moreno
+ * 
+ */
 @SuppressWarnings("serial")
 public class RegistroNegocio extends JFrame {
 

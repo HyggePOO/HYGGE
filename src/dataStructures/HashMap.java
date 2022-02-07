@@ -1,7 +1,10 @@
 package dataStructures;
 
 import java.util.Arrays;
-
+/**
+ * @author Valentina Colmenares, Daniel Lozano & Kevin Rincón
+ * 
+ */
 public class HashMap {
 	
 	private String [] arreglo;

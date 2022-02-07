@@ -1,4 +1,8 @@
 package dataStructures;
+/**
+ * @author Valentina Colmenares, Daniel Lozano, Mateo Ortiz & Kevin Rincón
+ * 
+ */
 class QueueNode <T> {
 	  private T data;
 	  private QueueNode<T> next;

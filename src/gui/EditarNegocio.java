@@ -30,7 +30,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JTextPane;
 import javax.swing.JTextField;
 
-
+/**
+ * @author Valentina Colmenares, Daniel Lozano, Mateo Ortiz, Kevin Rincón & Andres Moreno
+ * 
+ */
 @SuppressWarnings("serial")
 public class EditarNegocio extends JFrame {
 
@@ -150,7 +153,12 @@ public class EditarNegocio extends JFrame {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					Runner.cargar();
+					try {
+						Runner.cargar();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					JOptionPane.showMessageDialog(null, "Ciudad cambiada con éxito","HYGGE",JOptionPane.INFORMATION_MESSAGE);
 				}
 			}

@@ -27,7 +27,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JTextPane;
 import javax.swing.JTextField;
 
-
+/**
+ * @author Valentina Colmenares, Daniel Lozano, Mateo Ortiz, Kevin Rincón & Andres Moreno
+ * 
+ */
 @SuppressWarnings("serial")
 public class EditarPerfil extends JFrame {
 

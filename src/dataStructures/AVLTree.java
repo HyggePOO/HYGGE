@@ -1,7 +1,9 @@
 package dataStructures;
 
-import java.util.*;
-
+/**
+ * @author Valentina Colmenares, Daniel Lozano, Mateo Ortiz & Kevin Rincón
+ * 
+ */
 import data.Negocio;
 
 public class AVLTree{

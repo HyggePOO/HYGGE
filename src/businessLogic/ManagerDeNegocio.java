@@ -17,13 +17,12 @@ import java.util.Scanner;
 
 import data.Negocio;
 import data.NegocioBusqueda;
-import data.Usuario;
-import dataStructures.BinaryTree;
 import dataStructures.DoubleLinkedList;
 
-
-
-
+/**
+ * @author Valentina Colmenares, Daniel Lozano, Mateo Ortiz & Kevin Rincón
+ * 
+ */
 public class ManagerDeNegocio extends AdmUsuario{
 	private String fileName;
 
@@ -38,7 +37,7 @@ public class ManagerDeNegocio extends AdmUsuario{
 	}
 	
 	
-	public void readData() {
+	public void readData() throws Exception {
 		File inFile = new File(this.fileName);
 		try {
 			Scanner sc = new Scanner(inFile);
@@ -51,14 +50,14 @@ public class ManagerDeNegocio extends AdmUsuario{
 		}
 	}
 
-	private void readItem(Scanner sc) {
+	private void readItem(Scanner sc) throws Exception {
 		while(sc.hasNext()) {
 			String line = sc.nextLine();
 			processLine(line);
 		}
 	}
 
-	private void processLine(String line) {
+	private void processLine(String line) throws Exception {
 		Scanner sc = new Scanner(line);
 		sc.useDelimiter("~");
 		String bname = sc.next().trim();
@@ -76,7 +75,8 @@ public class ManagerDeNegocio extends AdmUsuario{
 		NegocioBusqueda nb = new NegocioBusqueda(nombre,categoriaFuncion,ciudad,calificacion,numeroVotos);
 		negocioBus.add(nb);
 		negocio.add(n);
-		negocioH.set(contraseña, id);
+		negocioContraseñaH.set(bname + contraseña, id);
+		negocioH.set(bname,id );
 		System.out.println("Negocio "+ bname + " añadido.");
 
 	}
@@ -106,12 +106,11 @@ public class ManagerDeNegocio extends AdmUsuario{
 		}
 	}
 	
-	public static void reiniciarNegocios() {
+	public static void reiniciarNegocios() throws Exception {
 		negocio.clear();
-	}
-	
-	public static void reiniciarNegociosBusqueda() {
 		negocioBus.clear();
+		negocioH.clear();
+		negocioContraseñaH.clear();
 	}
 	
 	public static void registroNegocio(String bname,String nombre,String contraseña, double calificacion, String categoriaUbicacion,String categoriaFuncion, String ciudad,String direccion) {
@@ -170,14 +169,31 @@ public class ManagerDeNegocio extends AdmUsuario{
 	
 	
 	
-	public static boolean loginNegocio(String username, String contraseña) throws Exception {
-		Negocio neg = negocio.getNegocio(username);
-		int id = neg.getId();
-		boolean usuarioCorrecto = bnameCorrecto(username,id);
+	public static boolean loginNegocio(String username, String contraseña) throws Exception{
+		//Negocio neg = negocio.getNegocio(username);
+		//int id = neg.getId();
+		boolean a = negocioH.hashKey(username);
+		boolean b = negocioContraseñaH.hashKey(username + contraseña);
+		if(a == false || b == false) {
+			return false;
+		}
+		//System.out.println(negocioH.hashKey(username) + " " + negocioH.get(username) + " " + negocioH.polyHash(contraseña));
+		try {
+			if (negocioH.get(username)==negocioContraseñaH.get(username + contraseña)) {
+				return true;
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		//int a = negocioH.get(username);
+		//System.out.print(a);
+		/*boolean usuarioCorrecto = bnameCorrecto(username,id);
 		boolean contraseñaCorrecta = contraseñaCorrecta(contraseña,id);
 		if(usuarioCorrecto == true && contraseñaCorrecta == true) {
 			return true;
-		}
+		}*/
 		return false;
 	}
 	
@@ -192,23 +208,17 @@ public class ManagerDeNegocio extends AdmUsuario{
 	}
 	
 	public static boolean bnameDuplicado(String bname) throws Exception {
-		for (int i = 0; i < negocio.getSize(); i++) {
-			if((negocio.getElement(i).getbName().equals(bname))){
-				System.out.println(i);
-				return true;			
-			}
-		}
-		return false;
+		return negocioH.hashKey(bname);
 	}
 	
 	
-	public static boolean bnameCorrecto(String bname,int id) throws Exception {
-		if((negocio.getNegocioById(id).getbName().equals(bname))){
-			System.out.println(id);
-			return true;			
-		}
-	return false;
-}
+//	public static boolean bnameCorrecto(String bname,int id) throws Exception {
+//		if((negocio.getNegocioById(id).getbName().equals(bname))){
+//			System.out.println(id);
+//			return true;			
+//		}
+//	return false;
+//}
 	
 	
 	public static int getPos(String username) throws Exception {
@@ -220,13 +230,13 @@ public class ManagerDeNegocio extends AdmUsuario{
 		return 0;
 	}
 	
-	private static boolean contraseñaCorrecta(String contraseña, int id) throws Exception {
-		if((negocio.getNegocioById(id).getContraseña().equals(contraseña))) {
-			return true;
-		}
-		System.out.println((usuario.getElement(id)).getContraseña());
-	return false;
-	}
+//	private static boolean contraseñaCorrecta(String contraseña, int id) throws Exception {
+//		if((negocio.getNegocioById(id).getContraseña().equals(contraseña))) {
+//			return true;
+//		}
+//		System.out.println((usuario.getElement(id)).getContraseña());
+//	return false;
+//	}
 	
 	public static boolean cambioContraseña(String actualContraseña,String nuevaContraseña) {
 		if (actualContraseña.equals(nuevaContraseña)) {

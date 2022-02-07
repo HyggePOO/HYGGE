@@ -1,5 +1,8 @@
 package dataStructures;
-
+/**
+ * @author Valentina Colmenares, Daniel Lozano, Mateo Ortiz & Kevin Rincón
+ * 
+ */
 class ListNode<T> {
 
 	  public ListNode<T> next;
